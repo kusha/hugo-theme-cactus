@@ -97,11 +97,21 @@
       {{ $projectsUrl = .Site.Params.projectsUrl }}
     {{ end }}
   <section id="projects">
-    <span class="h1"><a href="{{ $projectsUrl }}">Projects</a></span>
+    <span class="h1"><a href="{{ $projectsUrl }}">{{ i18n "projects" }}</a></span>
     <ul class="project-list">
         {{ range .Site.Data.projects.list }}
         <li class="project-item">
-          <a href="{{ .url }}">{{ .name }}</a>: {{ .desc | markdownify }}
+          <a href="{{ .url }}">{{ .name }}</a>:
+          {{ if eq (printf "%T" .desc) "string" }}
+            {{ .desc | markdownify }}
+          {{ else }}          
+            {{ if isset .desc $.Site.Language.Lang }}
+              {{ (index .desc $.Site.Language.Lang) | markdownify }}
+            {{ else }}
+              {{ .LanguagePrefix }}
+              {{ (index .desc $.Site.Params.defaultProjectsLanguage) | markdownify }}
+            {{ end }}
+          {{ end }}
         </li>
         {{ end }}
     </ul>
