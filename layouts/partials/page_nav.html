@@ -6,7 +6,7 @@
     <span id="nav">
       <ul>
         {{ range .Site.Menus.main }} 
-        <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+        <li><a href="{{ .URL | relLangURL }}">{{ .Name }}</a></li>
         {{ end }}
       </ul>
     </span>
@@ -38,10 +38,10 @@
           </a>
         </li>
       </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
+      <span id="i-prev" class="info" style="display:none;">{{ i18n "previous_post" }}</span>
+      <span id="i-next" class="info" style="display:none;">{{ i18n "next_post" }}</span>
+      <span id="i-top" class="info" style="display:none;">{{ i18n "back_to_top" }}</span>
+      <span id="i-share" class="info" style="display:none;">{{ i18n "share" }}</span>
     </span>
     <br/>
     <div id="share" style="display: none">

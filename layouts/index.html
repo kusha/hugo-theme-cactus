@@ -37,9 +37,9 @@
   </section>
 
   <section id="writing">
-    <span class="h1"><a href="{{ .Site.Params.mainSection | absURL }}">Writings</a></span>
+    <span class="h1"><a href="{{ .Site.Params.mainSection | absLangURL }}">{{ i18n "writings" }}</a></span>
     {{ if (and (and (isset .Site.Params "tagsoverview") (eq .Site.Params.tagsOverview true)) (gt (len .Site.Taxonomies.tags) 0)) }}
-    <span class="h2">Topics</span>
+    <span class="h2">{{ i18n "topics" }}</span>
     <span class="widget tagcloud">
       {{ $AllRegularPagesCount := len .Site.RegularPages }}
       {{ range $elem := .Site.Taxonomies.tags.Alphabetical }}
@@ -48,7 +48,7 @@
       </a>
       {{ end }}
     </span>
-    <span class="h2">Most recent</span>
+    <span class="h2">{{ i18n "most_recent" }}</span>
     {{ end }}
 
     {{ $showAllPostsOnHomePage := false }}
