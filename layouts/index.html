@@ -4,7 +4,7 @@
     {{ .Site.Params.description }}
   {{ end }}
   {{ if isset .Site.Params "social" }}
-      <p>Find me on
+      <p>
       {{ $length := (len .Site.Params.social) }}
       {{ range $index, $elem := .Site.Params.social}}
       {{ if eq $elem.name "email" }}
@@ -20,6 +20,11 @@
           <i class="fas fa-graduation-cap"></i>
         </a>
         {{ else }}
+        {{ if (eq $index 0) }}
+        {{ humanize $elem.action }}
+        {{ else }}
+        {{ $elem.action }}
+        {{ end }}
         <a class="icon" target="_blank" rel="noopener" href="{{ $elem.link }}">
           <i class="fab fa-{{ lower $elem.name }}"></i>
         </a>
@@ -27,7 +32,7 @@
         {{ if (lt (add $index 2) $length) }}
           {{- print " , " -}}
         {{ else if (lt (add $index 1) $length) }}
-          {{- print " and " -}}
+        &nbsp;{{ i18n "or" }}
         {{ else }}
           {{- print "." -}}
         {{ end }}
